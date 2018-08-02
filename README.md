@@ -10,6 +10,7 @@ Tutorial para el despliegue en la plataforma GCP  kubernetes engine
   -En la linea de comandos ejecutamos lo siguiente
   
    //Create environment variable for correct distribution
+   
       export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 
    //Add the Cloud SDK distribution URI as a package source
