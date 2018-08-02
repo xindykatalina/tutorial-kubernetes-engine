@@ -33,3 +33,58 @@ Tutorial para el despliegue en la plataforma GCP  kubernetes engine
    - En el símbolo del sistema, seleccione un proyecto de Cloud Platform de la lista de aquellos en los que tiene permisos de Propietario , Editor o Visor
    - Si tiene la API de Google Compute Engine habilitada, le gcloud init permite elegir una zona predeterminada de Compute Engine
    - Nuevamente ejecutamos gcloud init confirma que ha completado los pasos de configuración con éxito
+   
+3. Una vez seleccionado el proyecto tageoamos y subimos la imagen a Register de google
+	-Tagear la imagen
+
+		sudo docker tag <imagen> gcr.io/<proyecto>/<tageo>
+	
+	-Push a la imagen
+	
+		gcloud docker -- push gcr.io/<proyecto>/<tageo>
+		
+4. Creamos el cluster, nos dirigimos a GCP y en el menu Kubernetes Engine donde los contenedores sirven para empaquetar aplicaciones, de modo que se puedan desplegar y ejecutar fácilmente en su propio entorno aislado. Se administran en clústeres que automatizan la creación y el mantenimiento de VMs.
+
+5. Hacemos el deployment
+	- Crear el deploy
+	
+		kubectl run [cluster] --image=gcr.io/[project]/[imagen]@[id_register] --port=5000
+		
+	- Este comando genera el deploy con su balanceador  en el cluster
+		
+		kubectl expose deployment [cluster] --type="LoadBalancer"
+		
+	- Este comando muestra la ip externa expuesta.
+		
+		kubectl get service
+		
+	- Eliminar deploy
+		
+		kubectl delete deployment cluster-karaoke
+
+	- Eliminar balanceador 
+		
+		kubectl delete  service cluster-karaoke
+
+
+		NAME            CLUSTER-IP      EXTERNAL-IP    PORT(S)          AGE
+		api		10.11.251.170   35.185.42.82   5000:31264/TCP   39s
+		kubernetes      10.11.240.1     <none>         443/TCP          1h
+
+
+	- Visualiza los pods 
+		
+		kubectl get hpa
+
+	- Eliminar pods 
+
+		kubectl delete hpa [cluster]
+
+	- Crear pods 
+
+ 		kubectl autoscale deployment [cluster] --min=3 --max=15 --cpu-percent=80
+
+
+
+
+
