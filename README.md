@@ -3,7 +3,7 @@ Tutorial para el despliegue en la plataforma GCP  kubernetes engine
 
 1. Lo primero que hay que instalar en su maquina es el Google Cloud SDK
 
-  -Entramos a esta url https://cloud.google.com/sdk/docs/quickstarts
+  -Se encuentra en esta url https://cloud.google.com/sdk/docs/quickstarts
 	
   -Seleccionamos Quickstart for Debian and Ubuntu
   
@@ -25,4 +25,11 @@ Tutorial para el despliegue en la plataforma GCP  kubernetes engine
    
       sudo apt-get update && sudo apt-get install google-cloud-sdk
 
-
+2. Inicializa el SDK
+	
+   - gcloud init
+   - Acepte la opción para iniciar sesión con su cuenta de usuario de Google: ingresando Y
+   - En su navegador, inicie sesión en su cuenta de usuario de Google cuando se le solicite y haga clic en Permitir para otorgar permiso para acceder a los recursos de Google Cloud Platform.
+   - En el símbolo del sistema, seleccione un proyecto de Cloud Platform de la lista de aquellos en los que tiene permisos de Propietario , Editor o Visor
+   - Si tiene la API de Google Compute Engine habilitada, le gcloud init permite elegir una zona predeterminada de Compute Engine
+   - Nuevamente ejecutamos gcloud init confirma que ha completado los pasos de configuración con éxito
