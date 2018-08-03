@@ -46,6 +46,10 @@ Tutorial para el despliegue en la plataforma GCP  kubernetes engine
 4. Creamos el cluster, nos dirigimos a GCP y en el menu Kubernetes Engine donde los contenedores sirven para empaquetar aplicaciones, de modo que se puedan desplegar y ejecutar fácilmente en su propio entorno aislado. Se administran en clústeres que automatizan la creación y el mantenimiento de VMs.
 
 5. Hacemos el deployment
+	- Nos conectamos al cluster 
+	
+		gcloud container clusters get-credentials cluster-test --zone us-east1-d --project awesome-tensor-212120
+	
 	- Crear el deploy
 	
 		kubectl run [cluster] --image=gcr.io/[project]/[imagen]@[id_register] --port=5000
